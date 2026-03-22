@@ -1,4 +1,9 @@
-com\mycompany\main\Jugador.class
-com\mycompany\main\Main.class
+com\mycompany\main\NewJFrame.class
+Labels\Label_Inicio\Inicio.class
 com\mycompany\main\Batalla.class
+com\mycompany\main\Main$1.class
 com\mycompany\main\Pokemon.class
+com\mycompany\main\Jugador.class
+Labels\Label_Seleccion\Seleccion.class
+Labels\Label_Seleccion\Seleccion$1.class
+com\mycompany\main\Main.class
