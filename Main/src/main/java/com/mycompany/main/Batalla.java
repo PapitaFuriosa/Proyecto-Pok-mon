@@ -1,65 +1,96 @@
 package com.mycompany.main;
 
+import java.util.Random;
+
 public class Batalla {
 
-    
-    static String[] historial = new String[100];
+    static String[] historial = new String[5000];
     static int top = -1;
-
-    
-    static Jugador[] cola = new Jugador[2];
-    static int frente = 0;
+    static Random random = new Random();
 
     public static void push(String texto) {
         top++;
         historial[top] = texto;
     }
 
-    public static void mostrarHistorial() {
-        System.out.println("\n=== HISTORIAL ===");
-        for (int i = top; i >= 0; i--) {
-            System.out.println(historial[i]);
+    public static void reiniciar() {
+        top = -1;
+    }
+
+    public static String obtenerHistorial() {
+        String texto = "";
+        for (int i = 0; i <= top; i++) {
+            texto += historial[i] + "\n";
+        }
+        return texto;
+    }
+
+    public static void iniciar(Jugador jugador, Jugador cpu) {
+        reiniciar();
+        int turno = 1;
+
+        while (jugador.tienePokemonesVivos() && cpu.tienePokemonesVivos()) {
+
+            jugador.pasarSiguientePokemon();
+            cpu.pasarSiguientePokemon();
+
+            Pokemon pJugador = jugador.getPokemonActual();
+            Pokemon pCpu = cpu.getPokemonActual();
+
+            if (pJugador == null || pCpu == null) {
+                break;
+            }
+
+            push("========== TURNO " + turno + " ==========");
+            push("Jugador usa a " + pJugador.nombre + " | CPU usa a " + pCpu.nombre);
+
+            atacar(jugador, cpu);
+
+            if (cpu.getPokemonActual() != null && cpu.getPokemonActual().vivo()) {
+                atacar(cpu, jugador);
+            }
+
+            jugador.pasarSiguientePokemon();
+            cpu.pasarSiguientePokemon();
+
+            push("Estado actual:");
+            push("Jugador actual: " + (jugador.getPokemonActual() != null ? jugador.getPokemonActual().nombre + " | Vida: " + jugador.getPokemonActual().vida : "Sin Pokémon"));
+            push("CPU actual: " + (cpu.getPokemonActual() != null ? cpu.getPokemonActual().nombre + " | Vida: " + cpu.getPokemonActual().vida : "Sin Pokémon"));
+            push("------------------------------------------");
+
+            turno++;
         }
     }
 
-    public static Jugador siguienteTurno() {
-        Jugador j = cola[frente];
-        frente = (frente + 1) % 2;
-        return j;
-    }
+    public static void atacar(Jugador atacante, Jugador defensor) {
+        Pokemon pAtaca = atacante.getPokemonActual();
+        Pokemon pDefiende = defensor.getPokemonActual();
 
-    public static void iniciar(Jugador j1, Jugador j2) {
-        cola[0] = j1;
-        cola[1] = j2;
-        batalla(j1, j2, 1);
-    }
-
-    public static void batalla(Jugador j1, Jugador j2, int turno) {
-
-        if (!j1.pokemon.vivo() || !j2.pokemon.vivo()) {
+        if (pAtaca == null || pDefiende == null) {
             return;
         }
 
-        System.out.println("\n=== TURNO " + turno + " ===");
+        int variacion = random.nextInt(11); // 0 a 10
+        int danio = (pAtaca.ataque - pDefiende.defensa) + variacion;
 
-        Jugador actual = siguienteTurno();
-        Jugador rival = (actual == j1) ? j2 : j1;
+        if (danio < 5) {
+            danio = 5;
+        }
 
-        int danio = actual.pokemon.ataque - rival.pokemon.defensa;
-        if (danio < 1) danio = 1;
+        pDefiende.recibirDanio(danio);
 
-        rival.pokemon.recibirDanio(danio);
+        push(atacante.nombre + " ataca con " + pAtaca.nombre
+                + " y causa " + danio + " de daño a " + pDefiende.nombre + ".");
 
-        String texto = actual.nombre + " ataca a " + rival.nombre +
-                " con " + actual.pokemon.nombre +
-                " causando " + danio + " de daño";
+        if (!pDefiende.vivo()) {
+            push(pDefiende.nombre + " fue derrotado.");
+        }
+    }
 
-        System.out.println(texto);
-        push(texto);
-
-        System.out.println(j1.nombre + " vida: " + j1.pokemon.vida);
-        System.out.println(j2.nombre + " vida: " + j2.pokemon.vida);
-
-        batalla(j1, j2, turno + 1);
+    public static String obtenerGanador(Jugador jugador, Jugador cpu) {
+        if (jugador.tienePokemonesVivos()) {
+            return jugador.nombre;
+        }
+        return cpu.nombre;
     }
 }

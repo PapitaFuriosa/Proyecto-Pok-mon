@@ -56,6 +56,8 @@ public class Informacion extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocationByPlatform(true);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 248, 220));
         jPanel1.setForeground(new java.awt.Color(255, 102, 153));
@@ -85,6 +87,7 @@ public class Informacion extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        jTable2.setEnabled(false);
         jScrollPane2.setViewportView(jTable2);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
