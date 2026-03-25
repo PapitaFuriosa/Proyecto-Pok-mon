@@ -13,7 +13,7 @@ import Labels.Label_Selecc_Pokemon.Seleccion_Pokemon;
  * @author Usuario
  */
 public class Informacion extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Informacion.class.getName());
 
     /**
@@ -94,12 +94,39 @@ public class Informacion extends javax.swing.JFrame {
         jLabel6.setText("Información de los pokemones");
 
         btndevolver.setText("Salir");
+        btndevolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btndevolverMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btndevolverMouseExited(evt);
+            }
+        });
         btndevolver.addActionListener(this::btndevolverActionPerformed);
 
         btnselecc.setText("Empezar");
+        btnselecc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnseleccMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnseleccMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnseleccMouseExited(evt);
+            }
+        });
         btnselecc.addActionListener(this::btnseleccActionPerformed);
 
         btnReglas.setText("Reglas");
+        btnReglas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnReglasMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnReglasMouseExited(evt);
+            }
+        });
         btnReglas.addActionListener(this::btnReglasActionPerformed);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -147,13 +174,13 @@ public class Informacion extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 1, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -161,26 +188,57 @@ public class Informacion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btndevolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndevolverActionPerformed
-        // TODO add your handling code here:
-         Inicio inicio = new Inicio(); 
-            inicio.setVisible(true);
-            this.dispose(); 
+
+        Inicio inicio = new Inicio();
+        inicio.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btndevolverActionPerformed
 
     private void btnseleccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnseleccActionPerformed
-        // TODO add your handling code here:
-          Seleccion_Pokemon seleccion_pokemon = new Seleccion_Pokemon(); 
-            seleccion_pokemon.setVisible(true);
-            this.dispose(); 
+
+        Seleccion_Pokemon seleccion_pokemon = new Seleccion_Pokemon();
+        seleccion_pokemon.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnseleccActionPerformed
 
     private void btnReglasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReglasActionPerformed
-        // TODO add your handling code here:
-         Reglas reglas = new Reglas(); 
-            reglas.setVisible(true);
-            this.dispose(); 
-        
+
+        Reglas reglas = new Reglas();
+        reglas.setVisible(true);
+        this.dispose();
+
     }//GEN-LAST:event_btnReglasActionPerformed
+
+    private void btnseleccMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnseleccMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnseleccMouseClicked
+
+    private void btnseleccMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnseleccMouseEntered
+                                         
+    btnselecc.setBackground(new java.awt.Color(210, 195, 150));
+
+        
+    }//GEN-LAST:event_btnseleccMouseEntered
+
+    private void btnseleccMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnseleccMouseExited
+    btnselecc.setBackground(new java.awt.Color(220, 220, 220));
+    }//GEN-LAST:event_btnseleccMouseExited
+
+    private void btnReglasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReglasMouseEntered
+        btnReglas.setBackground(new java.awt.Color(210, 195, 150));
+    }//GEN-LAST:event_btnReglasMouseEntered
+
+    private void btnReglasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReglasMouseExited
+     btnReglas.setBackground(new java.awt.Color(220, 220, 220));
+    }//GEN-LAST:event_btnReglasMouseExited
+
+    private void btndevolverMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btndevolverMouseEntered
+       btndevolver.setBackground(new java.awt.Color(210, 195, 150));
+    }//GEN-LAST:event_btndevolverMouseEntered
+
+    private void btndevolverMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btndevolverMouseExited
+       btndevolver.setBackground(new java.awt.Color(220, 220, 220));
+    }//GEN-LAST:event_btndevolverMouseExited
 
     /**
      * @param args the command line arguments

@@ -1,10 +1,7 @@
-com\mycompany\main\Main$1.class
-com\mycompany\main\Pokemon.class
-Labels\Label_Info\Informacion$1.class
-com\mycompany\main\Main.class
-Labels\Label_Inicio\Inicio.class
-com\mycompany\main\Batalla.class
-com\mycompany\main\Jugador.class
-Labels\Label_Selecc_Pokemon\Reglas.class
-Labels\Label_Info\Informacion.class
-Labels\Label_Selecc_Pokemon\Seleccion_Pokemon.class
+Labels/Label_Selecc_Pokemon/Seleccion_Pokemon$2.class
+Labels/Label_Info/Informacion$3.class
+Labels/Label_Inicio/Inicio$1.class
+Labels/Label_Info/Informacion$2.class
+Labels/Label_Info/Informacion$4.class
+Labels/Label_Inicio/Inicio$2.class
+Labels/Label_Selecc_Pokemon/Seleccion_Pokemon$1.class

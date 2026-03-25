@@ -3,74 +3,74 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Labels.Label_Selecc_Pokemon;
+
 import com.mycompany.main.Batalla;
 import com.mycompany.main.Jugador;
 import com.mycompany.main.Pokemon;
 import Labels.Label_Info.Informacion;
-import javax.swing.JOptionPane;
+
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-
 public class Seleccion_Pokemon extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Seleccion_Pokemon.class.getName());
 
-    /**
-     * Creates new form Seleccion_Pokemon
-     */
     public Seleccion_Pokemon() {
         initComponents();
     }
+
     private Pokemon crearPokemon(String nombre) {
-    switch (nombre) {
-        case "Charmander":
-            return new Pokemon("Charmander", 200, 25, 20);
-        case "Squirtle":
-            return new Pokemon("Squirtle", 175, 40, 20);
-        case "Pidgey":
-            return new Pokemon("Pidgey", 175, 30, 20);
-        case "Pikachu":
-            return new Pokemon("Pikachu", 150, 35, 29);
-        case "Sandshrew":
-            return new Pokemon("Sandshrew", 300, 15, 40);
-        case "Diglett":
-            return new Pokemon("Diglett", 250, 19, 38);
-        case "Ponyta":
-            return new Pokemon("Ponyta", 225, 30, 25);
-        case "Psyduck":
-            return new Pokemon("Psyduck", 175, 35, 25);
-        case "Spearow":
-            return new Pokemon("Spearow", 225, 30, 20);
-        case "Jolteon":
-            return new Pokemon("Jolteon", 210, 26, 20);
-        default:
-            return null;
-    }
-}
-    private Pokemon[] crearEquipoCpu() {
-    String[] nombres = {
-        "Charmander", "Squirtle", "Pidgey", "Pikachu", "Sandshrew",
-        "Diglett", "Ponyta", "Psyduck", "Spearow", "Jolteon"
-    };
-
-    java.util.Random random = new java.util.Random();
-    Pokemon[] equipo = new Pokemon[4];
-    boolean[] usados = new boolean[nombres.length];
-
-    int i = 0;
-    while (i < 4) {
-        int pos = random.nextInt(nombres.length);
-        if (!usados[pos]) {
-            usados[pos] = true;
-            equipo[i] = crearPokemon(nombres[pos]);
-            i++;
+        switch (nombre) {
+            case "Charmander":
+                return new Pokemon("Charmander", 200, 25, 20);
+            case "Squirtle":
+                return new Pokemon("Squirtle", 175, 40, 20);
+            case "Pidgey":
+                return new Pokemon("Pidgey", 175, 30, 20);
+            case "Pikachu":
+                return new Pokemon("Pikachu", 150, 35, 29);
+            case "Sandshrew":
+                return new Pokemon("Sandshrew", 300, 15, 40);
+            case "Diglett":
+                return new Pokemon("Diglett", 250, 19, 38);
+            case "Ponyta":
+                return new Pokemon("Ponyta", 225, 30, 25);
+            case "Psyduck":
+                return new Pokemon("Psyduck", 175, 35, 25);
+            case "Spearow":
+                return new Pokemon("Spearow", 225, 30, 20);
+            case "Jolteon":
+                return new Pokemon("Jolteon", 210, 26, 20);
+            default:
+                return null;
         }
     }
 
-    return equipo;
-}
+    private Pokemon[] crearEquipoCpu() {
+        String[] nombres = {
+            "Charmander", "Squirtle", "Pidgey", "Pikachu", "Sandshrew",
+            "Diglett", "Ponyta", "Psyduck", "Spearow", "Jolteon"
+        };
+
+        java.util.Random random = new java.util.Random();
+        Pokemon[] equipo = new Pokemon[4];
+        boolean[] usados = new boolean[nombres.length];
+
+        int i = 0;
+        while (i < 4) {
+            int pos = random.nextInt(nombres.length);
+            if (!usados[pos]) {
+                usados[pos] = true;
+                equipo[i] = crearPokemon(nombres[pos]);
+                i++;
+            }
+        }
+
+        return equipo;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -99,6 +99,13 @@ public class Seleccion_Pokemon extends javax.swing.JFrame {
         btnBatalla = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -135,64 +142,129 @@ public class Seleccion_Pokemon extends javax.swing.JFrame {
         box4.addActionListener(this::box4ActionPerformed);
 
         btnBatalla.setText("Empieza la batalla");
+        btnBatalla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnBatallaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnBatallaMouseExited(evt);
+            }
+        });
         btnBatalla.addActionListener(this::btnBatallaActionPerformed);
 
         btnSalir.setText("Salir");
+        btnSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSalirMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSalirMouseExited(evt);
+            }
+        });
         btnSalir.addActionListener(this::btnSalirActionPerformed);
 
         jLabel12.setText("Nota: no se puede repetir pokemones");
+
+        jLabel9.setForeground(new java.awt.Color(51, 0, 51));
+        jLabel9.setText("Pikachu");
+
+        jLabel13.setForeground(new java.awt.Color(51, 0, 51));
+        jLabel13.setText("Charmander");
+
+        jLabel14.setForeground(new java.awt.Color(51, 0, 51));
+        jLabel14.setText("Squirtle");
+
+        jLabel15.setForeground(new java.awt.Color(51, 0, 51));
+        jLabel15.setText("Pidgey");
+
+        jLabel16.setForeground(new java.awt.Color(51, 0, 51));
+        jLabel16.setText("Diglett");
+
+        jLabel17.setForeground(new java.awt.Color(51, 0, 51));
+        jLabel17.setText("Psyduck");
+
+        jLabel18.setForeground(new java.awt.Color(51, 0, 51));
+        jLabel18.setText("Shuffle");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addGap(23, 23, 23)
+                        .addComponent(jLabel13))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(6, 6, 6)
+                            .addComponent(jLabel15)
+                            .addGap(58, 58, 58)
+                            .addComponent(jLabel16))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jLabel6))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(19, 19, 19)
+                                    .addComponent(jLabel3))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(18, 18, 18)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGap(6, 6, 6)
+                                            .addComponent(jLabel18))
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                .addGap(52, 52, 52)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jLabel3))
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel17)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel6)))
-                .addGap(39, 39, 39)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel10))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel10))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(53, 53, 53)
-                                .addComponent(jLabel11)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(53, 53, 53)
+                                        .addComponent(jLabel11)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(box3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(278, 278, 278)
+                                        .addComponent(box1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(box3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(278, 278, 278)
-                                .addComponent(box1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(box2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(box4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(84, 84, 84))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(box2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(box4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(84, 84, 84))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel12)
-                                .addGap(3, 3, 3)
-                                .addComponent(btnSalir)
-                                .addGap(33, 33, 33))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnBatalla)
-                                .addGap(169, 169, 169))))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel12)
+                                        .addGap(3, 3, 3)
+                                        .addComponent(btnSalir)
+                                        .addGap(33, 33, 33))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(btnBatalla)
+                                        .addGap(169, 169, 169))))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel14)
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,7 +300,12 @@ public class Seleccion_Pokemon extends javax.swing.JFrame {
                             .addComponent(box4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(160, 160, 160))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel14))
+                        .addGap(41, 41, 41)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -237,16 +314,27 @@ public class Seleccion_Pokemon extends javax.swing.JFrame {
                                     .addComponent(jLabel7)))
                             .addComponent(jLabel11))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(71, 71, 71)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel10))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnBatalla)
-                                .addGap(51, 51, 51))))))
+                                .addGap(51, 51, 51))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(jLabel15)
+                                        .addGap(48, 48, 48)
+                                        .addComponent(jLabel10))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel17)
+                                            .addComponent(jLabel16))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel8)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel18)
+                                .addContainerGap(7, Short.MAX_VALUE))))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -265,77 +353,73 @@ public class Seleccion_Pokemon extends javax.swing.JFrame {
 
     private void btnBatallaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatallaActionPerformed
         try {
-       
 
-        String p1 = box1.getSelectedItem().toString();
-        String p2 = box2.getSelectedItem().toString();
-        String p3 = box3.getSelectedItem().toString();
-        String p4 = box4.getSelectedItem().toString();
+            String p1 = box1.getSelectedItem().toString();
+            String p2 = box2.getSelectedItem().toString();
+            String p3 = box3.getSelectedItem().toString();
+            String p4 = box4.getSelectedItem().toString();
 
-        JOptionPane.showMessageDialog(this, "Selecciones: " + p1 + ", " + p2 + ", " + p3 + ", " + p4);
+            JOptionPane.showMessageDialog(this, "Selecciones: " + p1 + ", " + p2 + ", " + p3 + ", " + p4);
 
-        if (p1.equals("Pokemon 1") || p2.equals("Pokemon 2")
-                || p3.equals("Pokemon 3") || p4.equals("Pokemon 4")) {
-            JOptionPane.showMessageDialog(this, "Debe seleccionar los 4 Pokémon");
-            return;
+            if (p1.equals("Pokemon 1") || p2.equals("Pokemon 2")
+                    || p3.equals("Pokemon 3") || p4.equals("Pokemon 4")) {
+                JOptionPane.showMessageDialog(this, "Debe seleccionar los 4 Pokémon");
+                return;
+            }
+
+            if (p1.equals(p2) || p1.equals(p3) || p1.equals(p4)
+                    || p2.equals(p3) || p2.equals(p4)
+                    || p3.equals(p4)) {
+                JOptionPane.showMessageDialog(this, "No se pueden repetir Pokémon");
+                return;
+            }
+
+            Pokemon[] equipoJugador = new Pokemon[4];
+            equipoJugador[0] = crearPokemon(p1);
+            equipoJugador[1] = crearPokemon(p2);
+            equipoJugador[2] = crearPokemon(p3);
+            equipoJugador[3] = crearPokemon(p4);
+
+            Pokemon[] equipoCpu = crearEquipoCpu();
+
+            Jugador jugador = new Jugador("Jugador", equipoJugador);
+            Jugador cpu = new Jugador("CPU", equipoCpu);
+
+            Batalla.iniciar(jugador, cpu);
+
+            String resultado = Batalla.obtenerHistorial()
+                    + "\n=================================\n"
+                    + "GANADOR: " + Batalla.obtenerGanador(jugador, cpu);
+
+            JTextArea area = new JTextArea(resultado);
+            area.setEditable(false);
+            area.setLineWrap(true);
+            area.setWrapStyleWord(true);
+            area.setCaretPosition(0);
+
+            JScrollPane scroll = new JScrollPane(area);
+            scroll.setPreferredSize(new java.awt.Dimension(500, 400));
+
+            JOptionPane.showMessageDialog(this, scroll, "Resultado de la batalla", JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+            e.printStackTrace();
         }
-
-        if (p1.equals(p2) || p1.equals(p3) || p1.equals(p4)
-                || p2.equals(p3) || p2.equals(p4)
-                || p3.equals(p4)) {
-            JOptionPane.showMessageDialog(this, "No se pueden repetir Pokémon");
-            return;
-        }
-
-        Pokemon[] equipoJugador = new Pokemon[4];
-        equipoJugador[0] = crearPokemon(p1);
-        equipoJugador[1] = crearPokemon(p2);
-        equipoJugador[2] = crearPokemon(p3);
-        equipoJugador[3] = crearPokemon(p4);
-
-        Pokemon[] equipoCpu = crearEquipoCpu();
-
-        Jugador jugador = new Jugador("Jugador", equipoJugador);
-        Jugador cpu = new Jugador("CPU", equipoCpu);
-
-        Batalla.iniciar(jugador, cpu);
-
-        String resultado = Batalla.obtenerHistorial()
-                + "\n=================================\n"
-                + "GANADOR: " + Batalla.obtenerGanador(jugador, cpu);
-
-        JTextArea area = new JTextArea(resultado);
-        area.setEditable(false);
-        area.setLineWrap(true);
-        area.setWrapStyleWord(true);
-        area.setCaretPosition(0);
-
-        JScrollPane scroll = new JScrollPane(area);
-        scroll.setPreferredSize(new java.awt.Dimension(500, 400));
-
-        JOptionPane.showMessageDialog(this, scroll, "Resultado de la batalla", JOptionPane.INFORMATION_MESSAGE);
-
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
-        e.printStackTrace();
-    }
 
     }//GEN-LAST:event_btnBatallaActionPerformed
 
     private void box1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_box1ActionPerformed
         // TODO add your handling code here:
-      
-        
 
-      
+
     }//GEN-LAST:event_box1ActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
 
-            // TODO add your handling code here:
-            Informacion informacion = new Informacion(); // abre la pantalla de inicio
-            informacion.setVisible(true);
-            this.dispose(); // cierra la pantalla actual
+        Informacion informacion = new Informacion();
+        informacion.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void box2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_box2ActionPerformed
@@ -351,6 +435,22 @@ public class Seleccion_Pokemon extends javax.swing.JFrame {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_box4ActionPerformed
+
+    private void btnBatallaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBatallaMouseEntered
+        btnBatalla.setBackground(new java.awt.Color(210, 195, 150));
+    }//GEN-LAST:event_btnBatallaMouseEntered
+
+    private void btnBatallaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBatallaMouseExited
+        btnBatalla.setBackground(new java.awt.Color(220, 220, 220));
+    }//GEN-LAST:event_btnBatallaMouseExited
+
+    private void btnSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseEntered
+        btnSalir.setBackground(new java.awt.Color(210,195,150));
+    }//GEN-LAST:event_btnSalirMouseEntered
+
+    private void btnSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseExited
+        btnSalir.setBackground(new java.awt.Color(220, 220, 220));
+    }//GEN-LAST:event_btnSalirMouseExited
 
     /**
      * @param args the command line arguments
@@ -377,7 +477,7 @@ public class Seleccion_Pokemon extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> new Seleccion_Pokemon().setVisible(true));
     }
 
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> box1;
     private javax.swing.JComboBox<String> box2;
@@ -389,6 +489,12 @@ public class Seleccion_Pokemon extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -396,6 +502,7 @@ public class Seleccion_Pokemon extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
