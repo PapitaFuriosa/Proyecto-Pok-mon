@@ -24,35 +24,35 @@ public class Seleccion_Pokemon extends javax.swing.JFrame {
     public Seleccion_Pokemon(String nombreGuardado) {
         initComponents();
         this.nombre = nombreGuardado;
+        
     }
 
-    private Pokemon crearPokemon(String nombre) {
-        switch (nombre) {
-            case "Charmander":
-                return new Pokemon("Charmander", 200, 25, 20);
-            case "Squirtle":
-                return new Pokemon("Squirtle", 175, 40, 20);
-            case "Pidgey":
-                return new Pokemon("Pidgey", 175, 30, 20);
-            case "Pikachu":
-                return new Pokemon("Pikachu", 150, 35, 29);
-            case "Sandshrew":
-                return new Pokemon("Sandshrew", 300, 15, 40);
-            case "Diglett":
-                return new Pokemon("Diglett", 250, 19, 38);
-            case "Ponyta":
-                return new Pokemon("Ponyta", 225, 30, 25);
-            case "Psyduck":
-                return new Pokemon("Psyduck", 175, 35, 25);
-            case "Spearow":
-                return new Pokemon("Spearow", 225, 30, 20);
-            case "Jolteon":
-                return new Pokemon("Jolteon", 210, 26, 20);
-            default:
-                return null;
-        }
+private Pokemon crearPokemon(String nombre) {
+    switch (nombre) {
+        case "Charmander":
+            return new Pokemon("Charmander", 200, 25, 20, 40, 35);
+        case "Squirtle":
+            return new Pokemon("Squirtle", 175, 40, 20, 55, 38);
+        case "Pidgey":
+            return new Pokemon("Pidgey", 175, 30, 20, 40, 39);
+        case "Pikachu":
+            return new Pokemon("Pikachu", 150, 35, 29, 45, 32);
+        case "Sandshrew":
+            return new Pokemon("Sandshrew", 300, 15, 40, 30, 50);
+        case "Diglett":
+            return new Pokemon("Diglett", 250, 19, 38, 25, 46);
+        case "Ponyta":
+            return new Pokemon("Ponyta", 225, 30, 25, 39, 33);
+        case "Psyduck":
+            return new Pokemon("Psyduck", 175, 35, 25, 45, 35);
+        case "Spearow":
+            return new Pokemon("Spearow", 225, 30, 20, 40, 30);
+        case "Jolteon":
+            return new Pokemon("Jolteon", 210, 26, 20, 40, 30);
+        default:
+            return null;
     }
-
+}
     private Pokemon[] crearEquipoCpu() {
         String[] nombres = {
             "Charmander", "Squirtle", "Pidgey", "Pikachu", "Sandshrew",

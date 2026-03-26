@@ -17,6 +17,7 @@ public class Reglas extends javax.swing.JFrame {
   
     public Reglas() {
         initComponents();
+        
     }
 
     /**

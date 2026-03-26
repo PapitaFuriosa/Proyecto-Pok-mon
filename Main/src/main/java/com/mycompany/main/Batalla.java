@@ -69,30 +69,58 @@ public class Batalla {
         }
     }
 
-    public static void atacar(Jugador atacante, Jugador defensor) {
-        Pokemon pAtaca = atacante.getPokemonActual();
-        Pokemon pDefiende = defensor.getPokemonActual();
+public static void atacar(Jugador atacante, Jugador defensor) {
+    Pokemon pAtaca = atacante.getPokemonActual();
+    Pokemon pDefiende = defensor.getPokemonActual();
 
-        if (pAtaca == null || pDefiende == null) {
-            return;
-        }
-
-        int variacion = random.nextInt(11); // 0 a 10
-        int danio = (pAtaca.ataque - pDefiende.defensa) + variacion;
-
-        if (danio < 5) {
-            danio = 5;
-        }
-
-        pDefiende.recibirDanio(danio);
-
-        push(atacante.nombre + " ataca con " + pAtaca.nombre
-                + " y causa " + danio + " de daño a " + pDefiende.nombre + ".");
-
-        if (!pDefiende.vivo()) {
-            push(pDefiende.nombre + " fue derrotado.");
-        }
+    if (pAtaca == null || pDefiende == null) {
+        return;
     }
+
+    boolean usaAtaqueEspecial = random.nextInt(100) < 20;
+    boolean usaDefensaEspecial = random.nextInt(100) < 20;
+
+    int ataqueUsado;
+    int defensaUsada;
+    String tipoAtaque;
+    String tipoDefensa;
+
+    if (usaAtaqueEspecial) {
+        ataqueUsado = pAtaca.ataqueEspecial;
+        tipoAtaque = "ataque especial";
+    } else {
+        ataqueUsado = pAtaca.ataque;
+        tipoAtaque = "ataque normal";
+    }
+
+    if (usaDefensaEspecial) {
+        defensaUsada = pDefiende.defensaEspecial;
+        tipoDefensa = "defensa especial";
+    } else {
+        defensaUsada = pDefiende.defensa;
+        tipoDefensa = "defensa normal";
+    }
+
+    int base = ataqueUsado - defensaUsada;
+
+    int variacion = random.nextInt(11) - 5; // de -5 a +5
+    int danio = base + variacion;
+
+    if (danio < 1) {
+        danio = 1;
+    }
+
+    pDefiende.recibirDanio(danio);
+
+    push(atacante.nombre + " ataca con " + pAtaca.nombre + " usando " + tipoAtaque + ".");
+    push(defensor.nombre + " se defiende con " + pDefiende.nombre + " usando " + tipoDefensa + ".");
+    push("Daño causado: " + danio);
+    push("Vida restante de " + pDefiende.nombre + ": " + pDefiende.vida);
+
+    if (!pDefiende.vivo()) {
+        push(pDefiende.nombre + " fue derrotado.");
+    }
+}
 
     public static String obtenerGanador(Jugador jugador, Jugador cpu) {
         if (jugador.tienePokemonesVivos()) {

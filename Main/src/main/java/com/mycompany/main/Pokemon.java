@@ -5,12 +5,16 @@ public class Pokemon {
     public int vida;
     public int ataque;
     public int defensa;
+    public int ataqueEspecial;
+    public int defensaEspecial;
 
-    public Pokemon(String nombre, int vida, int ataque, int defensa) {
+    public Pokemon(String nombre, int vida, int ataque, int defensa, int ataqueEspecial, int defensaEspecial) {
         this.nombre = nombre;
         this.vida = vida;
         this.ataque = ataque;
         this.defensa = defensa;
+        this.ataqueEspecial = ataqueEspecial;
+        this.defensaEspecial = defensaEspecial;
     }
 
     public void recibirDanio(int danio) {

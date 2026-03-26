@@ -26,6 +26,7 @@ public class Informacion extends javax.swing.JFrame {
     public Informacion(String nombreRecibido) {
         initComponents();
         this.nombreGuardado = nombreRecibido;
+        
     }
 
     /**
