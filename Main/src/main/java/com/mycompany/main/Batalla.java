@@ -1,6 +1,6 @@
 package com.mycompany.main;
 
-import Labels.Label_Info.Informacion;
+
 import java.util.Random;
 
 public class Batalla {
@@ -103,7 +103,7 @@ public static void atacar(Jugador atacante, Jugador defensor) {
 
     int base = ataqueUsado - defensaUsada;
 
-    int variacion = random.nextInt(11) - 5; // de -5 a +5
+    int variacion = random.nextInt(11) - 5; 
     int danio = base + variacion;
 
     if (danio < 1) {
