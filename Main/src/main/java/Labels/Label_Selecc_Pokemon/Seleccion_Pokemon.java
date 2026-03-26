@@ -14,11 +14,16 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 public class Seleccion_Pokemon extends javax.swing.JFrame {
+    String nombre ;
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Seleccion_Pokemon.class.getName());
 
     public Seleccion_Pokemon() {
         initComponents();
+    }
+    public Seleccion_Pokemon(String nombreGuardado) {
+        initComponents();
+        this.nombre = nombreGuardado;
     }
 
     private Pokemon crearPokemon(String nombre) {
@@ -382,10 +387,10 @@ public class Seleccion_Pokemon extends javax.swing.JFrame {
 
             Pokemon[] equipoCpu = crearEquipoCpu();
 
-            Jugador jugador = new Jugador("Jugador", equipoJugador);
+            Jugador jugador = new Jugador(nombre, equipoJugador);
             Jugador cpu = new Jugador("CPU", equipoCpu);
 
-            Batalla.iniciar(jugador, cpu);
+            Batalla.iniciar(jugador, cpu, nombre);
 
             String resultado = Batalla.obtenerHistorial()
                     + "\n=================================\n"

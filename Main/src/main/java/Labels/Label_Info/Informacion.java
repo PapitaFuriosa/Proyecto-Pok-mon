@@ -13,14 +13,19 @@ import Labels.Label_Selecc_Pokemon.Seleccion_Pokemon;
  * @author Usuario
  */
 public class Informacion extends javax.swing.JFrame {
+    String nombreGuardado;
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Informacion.class.getName());
 
     /**
      * Creates new form Seleccion
      */
-    public Informacion() {
+    public Informacion(){
         initComponents();
+    }
+    public Informacion(String nombreRecibido) {
+        initComponents();
+        this.nombreGuardado = nombreRecibido;
     }
 
     /**
@@ -39,7 +44,7 @@ public class Informacion extends javax.swing.JFrame {
         jTable2 = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
         btndevolver = new javax.swing.JButton();
-        btnselecc = new javax.swing.JButton();
+        empezar = new javax.swing.JButton();
         btnReglas = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -104,19 +109,19 @@ public class Informacion extends javax.swing.JFrame {
         });
         btndevolver.addActionListener(this::btndevolverActionPerformed);
 
-        btnselecc.setText("Empezar");
-        btnselecc.addMouseListener(new java.awt.event.MouseAdapter() {
+        empezar.setText("Empezar");
+        empezar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnseleccMouseClicked(evt);
+                empezarMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnseleccMouseEntered(evt);
+                empezarMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnseleccMouseExited(evt);
+                empezarMouseExited(evt);
             }
         });
-        btnselecc.addActionListener(this::btnseleccActionPerformed);
+        empezar.addActionListener(this::empezarActionPerformed);
 
         btnReglas.setText("Reglas");
         btnReglas.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -141,7 +146,7 @@ public class Informacion extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(400, 400, 400)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnselecc, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(empezar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(btnReglas, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                                 .addComponent(btndevolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -160,7 +165,7 @@ public class Informacion extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnselecc, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(empezar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnReglas, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
@@ -194,12 +199,12 @@ public class Informacion extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btndevolverActionPerformed
 
-    private void btnseleccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnseleccActionPerformed
+    private void empezarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empezarActionPerformed
 
-        Seleccion_Pokemon seleccion_pokemon = new Seleccion_Pokemon();
+        Seleccion_Pokemon seleccion_pokemon = new Seleccion_Pokemon(this.nombreGuardado);
         seleccion_pokemon.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btnseleccActionPerformed
+    }//GEN-LAST:event_empezarActionPerformed
 
     private void btnReglasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReglasActionPerformed
 
@@ -209,20 +214,20 @@ public class Informacion extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnReglasActionPerformed
 
-    private void btnseleccMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnseleccMouseClicked
+    private void empezarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_empezarMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnseleccMouseClicked
+    }//GEN-LAST:event_empezarMouseClicked
 
-    private void btnseleccMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnseleccMouseEntered
+    private void empezarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_empezarMouseEntered
                                          
-    btnselecc.setBackground(new java.awt.Color(210, 195, 150));
+    empezar.setBackground(new java.awt.Color(210, 195, 150));
 
         
-    }//GEN-LAST:event_btnseleccMouseEntered
+    }//GEN-LAST:event_empezarMouseEntered
 
-    private void btnseleccMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnseleccMouseExited
-    btnselecc.setBackground(new java.awt.Color(220, 220, 220));
-    }//GEN-LAST:event_btnseleccMouseExited
+    private void empezarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_empezarMouseExited
+    empezar.setBackground(new java.awt.Color(220, 220, 220));
+    }//GEN-LAST:event_empezarMouseExited
 
     private void btnReglasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReglasMouseEntered
         btnReglas.setBackground(new java.awt.Color(210, 195, 150));
@@ -268,7 +273,7 @@ public class Informacion extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnReglas;
     private javax.swing.JButton btndevolver;
-    private javax.swing.JButton btnselecc;
+    private javax.swing.JButton empezar;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

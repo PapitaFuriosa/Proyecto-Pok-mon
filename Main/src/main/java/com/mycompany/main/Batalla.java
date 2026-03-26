@@ -1,8 +1,15 @@
 package com.mycompany.main;
 
+import Labels.Label_Info.Informacion;
 import java.util.Random;
 
 public class Batalla {
+    String nombre;
+    
+    public Batalla(String nombreRecibido){
+        this.nombre = nombreRecibido;
+        
+    }
 
     static String[] historial = new String[5000];
     static int top = -1;
@@ -25,7 +32,7 @@ public class Batalla {
         return texto;
     }
 
-    public static void iniciar(Jugador jugador, Jugador cpu) {
+    public static void iniciar(Jugador jugador, Jugador cpu, String nombre) {
         reiniciar();
         int turno = 1;
 
@@ -42,7 +49,7 @@ public class Batalla {
             }
 
             push("========== TURNO " + turno + " ==========");
-            push("Jugador usa a " + pJugador.nombre + " | CPU usa a " + pCpu.nombre);
+            push(nombre + " usa a " + pJugador.nombre + " | CPU usa a " + pCpu.nombre);
 
             atacar(jugador, cpu);
 
@@ -54,7 +61,7 @@ public class Batalla {
             cpu.pasarSiguientePokemon();
 
             push("Estado actual:");
-            push("Jugador actual: " + (jugador.getPokemonActual() != null ? jugador.getPokemonActual().nombre + " | Vida: " + jugador.getPokemonActual().vida : "Sin Pokémon"));
+            push(nombre + ": " + (jugador.getPokemonActual() != null ? jugador.getPokemonActual().nombre + " | Vida: " + jugador.getPokemonActual().vida : "Sin Pokémon"));
             push("CPU actual: " + (cpu.getPokemonActual() != null ? cpu.getPokemonActual().nombre + " | Vida: " + cpu.getPokemonActual().vida : "Sin Pokémon"));
             push("------------------------------------------");
 

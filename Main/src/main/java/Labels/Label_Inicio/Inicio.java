@@ -145,7 +145,7 @@ public class Inicio extends javax.swing.JFrame {
     if (nombre.isEmpty()) {
         javax.swing.JOptionPane.showMessageDialog(this, "Por favor, ingresa tu nombre para continuar.");
     } else {
-        Informacion ventanaSeleccion = new Informacion(); 
+        Informacion ventanaSeleccion = new Informacion(nombre); 
         ventanaSeleccion.setVisible(true);            
         
         this.dispose();
