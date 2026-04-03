@@ -4,6 +4,7 @@
  */
 package Labels.Label_Selecc_Pokemon;
 
+<<<<<<< HEAD
 import com.mycompany.main.Jugador;
 import com.mycompany.main.Pokemon;
 import Labels.Label_Info.Informacion;
@@ -14,11 +15,78 @@ import javax.swing.JOptionPane;
 public class Seleccion_Pokemon extends javax.swing.JFrame {
 
     String nombre;
+=======
+import com.mycompany.main.Batalla;
+import com.mycompany.main.Jugador;
+import com.mycompany.main.Pokemon;
+import Labels.Label_Info.Informacion;
+
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
+public class Seleccion_Pokemon extends javax.swing.JFrame {
+    String nombre ;
+>>>>>>> 2d20a783bb75ab3f3d3b16d12efc433ac235daed
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Seleccion_Pokemon.class.getName());
 
     public Seleccion_Pokemon() {
         initComponents();
+    }
+    public Seleccion_Pokemon(String nombreGuardado) {
+        initComponents();
+        this.nombre = nombreGuardado;
+        
+    }
+
+private Pokemon crearPokemon(String nombre) {
+    switch (nombre) {
+        case "Charmander":
+            return new Pokemon("Charmander", 200, 25, 20, 40, 35);
+        case "Squirtle":
+            return new Pokemon("Squirtle", 175, 40, 20, 55, 38);
+        case "Pidgey":
+            return new Pokemon("Pidgey", 175, 30, 20, 40, 39);
+        case "Pikachu":
+            return new Pokemon("Pikachu", 150, 35, 29, 45, 32);
+        case "Sandshrew":
+            return new Pokemon("Sandshrew", 300, 15, 40, 30, 50);
+        case "Diglett":
+            return new Pokemon("Diglett", 250, 19, 38, 25, 46);
+        case "Ponyta":
+            return new Pokemon("Ponyta", 225, 30, 25, 39, 33);
+        case "Psyduck":
+            return new Pokemon("Psyduck", 175, 35, 25, 45, 35);
+        case "Spearow":
+            return new Pokemon("Spearow", 225, 30, 20, 40, 30);
+        case "Jolteon":
+            return new Pokemon("Jolteon", 210, 26, 20, 40, 30);
+        default:
+            return null;
+    }
+}
+    private Pokemon[] crearEquipoCpu() {
+        String[] nombres = {
+            "Charmander", "Squirtle", "Pidgey", "Pikachu", "Sandshrew",
+            "Diglett", "Ponyta", "Psyduck", "Spearow", "Jolteon"
+        };
+
+        java.util.Random random = new java.util.Random();
+        Pokemon[] equipo = new Pokemon[4];
+        boolean[] usados = new boolean[nombres.length];
+
+        int i = 0;
+        while (i < 4) {
+            int pos = random.nextInt(nombres.length);
+            if (!usados[pos]) {
+                usados[pos] = true;
+                equipo[i] = crearPokemon(nombres[pos]);
+                i++;
+            }
+        }
+
+        return equipo;
     }
 
     public Seleccion_Pokemon(String nombreGuardado) {
@@ -197,7 +265,11 @@ public class Seleccion_Pokemon extends javax.swing.JFrame {
         cbPokemon4 = new javax.swing.JComboBox<>();
         btnBatalla = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
+<<<<<<< HEAD
         txtNombre = new javax.swing.JLabel();
+=======
+        jLabel12 = new javax.swing.JLabel();
+>>>>>>> 2d20a783bb75ab3f3d3b16d12efc433ac235daed
         jLabel9 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -228,6 +300,7 @@ public class Seleccion_Pokemon extends javax.swing.JFrame {
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/avatar (2).png"))); // NOI18N
 
+<<<<<<< HEAD
         cbPokemon1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pokemon 1", "Charmander", "Squirtle", "Pidgey", "Pikachu", "Sandshrew", "Diglett", "Ponyta", "Psyduck", "Spearow", "Jolteon" }));
         cbPokemon1.addActionListener(this::cbPokemon1ActionPerformed);
 
@@ -239,6 +312,19 @@ public class Seleccion_Pokemon extends javax.swing.JFrame {
 
         cbPokemon4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pokemon 4", "Charmander", "Squirtle", "Pidgey", "Pikachu", "Sandshrew", "Diglett", "Ponyta", "Psyduck", "Spearow", "Jolteon" }));
         cbPokemon4.addActionListener(this::cbPokemon4ActionPerformed);
+=======
+        box1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pokemon 1", "Charmander", "Squirtle", "Pidgey", "Pikachu", "Sandshrew", "Diglett", "Ponyta", "Psyduck", "Spearow", "Jolteon" }));
+        box1.addActionListener(this::box1ActionPerformed);
+
+        box3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pokemon 3", "Charmander", "Squirtle", "Pidgey", "Pikachu", "Sandshrew", "Diglett", "Ponyta", "Psyduck", "Spearow", "Jolteon" }));
+        box3.addActionListener(this::box3ActionPerformed);
+
+        box2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pokemon 2", "Charmander", "Squirtle", "Pidgey", "Pikachu", "Sandshrew", "Diglett", "Ponyta", "Psyduck", "Spearow", "Jolteon" }));
+        box2.addActionListener(this::box2ActionPerformed);
+
+        box4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pokemon 4", "Charmander", "Squirtle", "Pidgey", "Pikachu", "Sandshrew", "Diglett", "Ponyta", "Psyduck", "Spearow", "Jolteon" }));
+        box4.addActionListener(this::box4ActionPerformed);
+>>>>>>> 2d20a783bb75ab3f3d3b16d12efc433ac235daed
 
         btnBatalla.setText("Empieza la batalla");
         btnBatalla.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -262,7 +348,11 @@ public class Seleccion_Pokemon extends javax.swing.JFrame {
         });
         btnSalir.addActionListener(this::btnSalirActionPerformed);
 
+<<<<<<< HEAD
         txtNombre.setText("Nota: no se puede repetir pokemones");
+=======
+        jLabel12.setText("Nota: no se puede repetir pokemones");
+>>>>>>> 2d20a783bb75ab3f3d3b16d12efc433ac235daed
 
         jLabel9.setForeground(new java.awt.Color(51, 0, 51));
         jLabel9.setText("Pikachu");
@@ -338,6 +428,7 @@ public class Seleccion_Pokemon extends javax.swing.JFrame {
                                         .addGap(53, 53, 53)
                                         .addComponent(jLabel11)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+<<<<<<< HEAD
                                         .addComponent(cbPokemon3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(278, 278, 278)
@@ -346,6 +437,16 @@ public class Seleccion_Pokemon extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cbPokemon2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(cbPokemon4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+=======
+                                        .addComponent(box3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(278, 278, 278)
+                                        .addComponent(box1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(box2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(box4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+>>>>>>> 2d20a783bb75ab3f3d3b16d12efc433ac235daed
                                 .addGap(84, 84, 84))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -353,7 +454,11 @@ public class Seleccion_Pokemon extends javax.swing.JFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+<<<<<<< HEAD
                                         .addComponent(txtNombre)
+=======
+                                        .addComponent(jLabel12)
+>>>>>>> 2d20a783bb75ab3f3d3b16d12efc433ac235daed
                                         .addGap(3, 3, 3)
                                         .addComponent(btnSalir)
                                         .addGap(33, 33, 33))
@@ -386,7 +491,11 @@ public class Seleccion_Pokemon extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+<<<<<<< HEAD
                                 .addComponent(txtNombre)
+=======
+                                .addComponent(jLabel12)
+>>>>>>> 2d20a783bb75ab3f3d3b16d12efc433ac235daed
                                 .addGap(78, 78, 78)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cbPokemon1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -451,6 +560,7 @@ public class Seleccion_Pokemon extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBatallaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatallaActionPerformed
+<<<<<<< HEAD
         String nombreJugador = this.nombre;
 
         if (nombreJugador == null || nombreJugador.trim().isEmpty()) {
@@ -490,7 +600,62 @@ public class Seleccion_Pokemon extends javax.swing.JFrame {
         Pelea pelea = new Pelea(jugador, cpu);
         pelea.setVisible(true);
         this.dispose();
+=======
+        try {
 
+            String p1 = box1.getSelectedItem().toString();
+            String p2 = box2.getSelectedItem().toString();
+            String p3 = box3.getSelectedItem().toString();
+            String p4 = box4.getSelectedItem().toString();
+
+            JOptionPane.showMessageDialog(this, "Selecciones: " + p1 + ", " + p2 + ", " + p3 + ", " + p4);
+
+            if (p1.equals("Pokemon 1") || p2.equals("Pokemon 2")
+                    || p3.equals("Pokemon 3") || p4.equals("Pokemon 4")) {
+                JOptionPane.showMessageDialog(this, "Debe seleccionar los 4 Pokémon");
+                return;
+            }
+>>>>>>> 2d20a783bb75ab3f3d3b16d12efc433ac235daed
+
+            if (p1.equals(p2) || p1.equals(p3) || p1.equals(p4)
+                    || p2.equals(p3) || p2.equals(p4)
+                    || p3.equals(p4)) {
+                JOptionPane.showMessageDialog(this, "No se pueden repetir Pokémon");
+                return;
+            }
+
+            Pokemon[] equipoJugador = new Pokemon[4];
+            equipoJugador[0] = crearPokemon(p1);
+            equipoJugador[1] = crearPokemon(p2);
+            equipoJugador[2] = crearPokemon(p3);
+            equipoJugador[3] = crearPokemon(p4);
+
+            Pokemon[] equipoCpu = crearEquipoCpu();
+
+            Jugador jugador = new Jugador(nombre, equipoJugador);
+            Jugador cpu = new Jugador("CPU", equipoCpu);
+
+            Batalla.iniciar(jugador, cpu, nombre);
+
+            String resultado = Batalla.obtenerHistorial()
+                    + "\n=================================\n"
+                    + "GANADOR: " + Batalla.obtenerGanador(jugador, cpu);
+
+            JTextArea area = new JTextArea(resultado);
+            area.setEditable(false);
+            area.setLineWrap(true);
+            area.setWrapStyleWord(true);
+            area.setCaretPosition(0);
+
+            JScrollPane scroll = new JScrollPane(area);
+            scroll.setPreferredSize(new java.awt.Dimension(500, 400));
+
+            JOptionPane.showMessageDialog(this, scroll, "Resultado de la batalla", JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+            e.printStackTrace();
+        }
 
     }//GEN-LAST:event_btnBatallaActionPerformed
 
@@ -498,7 +663,11 @@ public class Seleccion_Pokemon extends javax.swing.JFrame {
         // TODO add your handling code here:
 
 
+<<<<<<< HEAD
     }//GEN-LAST:event_cbPokemon1ActionPerformed
+=======
+    }//GEN-LAST:event_box1ActionPerformed
+>>>>>>> 2d20a783bb75ab3f3d3b16d12efc433ac235daed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
 
@@ -531,6 +700,22 @@ public class Seleccion_Pokemon extends javax.swing.JFrame {
 
     private void btnSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseEntered
         btnSalir.setBackground(new java.awt.Color(210, 195, 150));
+    }//GEN-LAST:event_btnSalirMouseEntered
+
+    private void btnSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseExited
+        btnSalir.setBackground(new java.awt.Color(220, 220, 220));
+    }//GEN-LAST:event_btnSalirMouseExited
+
+    private void btnBatallaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBatallaMouseEntered
+        btnBatalla.setBackground(new java.awt.Color(210, 195, 150));
+    }//GEN-LAST:event_btnBatallaMouseEntered
+
+    private void btnBatallaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBatallaMouseExited
+        btnBatalla.setBackground(new java.awt.Color(220, 220, 220));
+    }//GEN-LAST:event_btnBatallaMouseExited
+
+    private void btnSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseEntered
+        btnSalir.setBackground(new java.awt.Color(210,195,150));
     }//GEN-LAST:event_btnSalirMouseEntered
 
     private void btnSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseExited
@@ -573,6 +758,10 @@ public class Seleccion_Pokemon extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+<<<<<<< HEAD
+=======
+    private javax.swing.JLabel jLabel12;
+>>>>>>> 2d20a783bb75ab3f3d3b16d12efc433ac235daed
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -589,6 +778,9 @@ public class Seleccion_Pokemon extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
+<<<<<<< HEAD
     private javax.swing.JLabel txtNombre;
+=======
+>>>>>>> 2d20a783bb75ab3f3d3b16d12efc433ac235daed
     // End of variables declaration//GEN-END:variables
 }
