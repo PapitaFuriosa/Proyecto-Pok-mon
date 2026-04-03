@@ -1,65 +1,89 @@
 package com.mycompany.main;
 
+import java.util.Random;
+
 public class Batalla {
+    public static PilaHistorial historial = new PilaHistorial();
+    public static Random random = new Random();
 
-    
-    static String[] historial = new String[100];
-    static int top = -1;
-
-    
-    static Jugador[] cola = new Jugador[2];
-    static int frente = 0;
+    public static void reiniciar() {
+        historial.vaciar();
+    }
 
     public static void push(String texto) {
-        top++;
-        historial[top] = texto;
+        historial.push(texto);
     }
 
-    public static void mostrarHistorial() {
-        System.out.println("\n=== HISTORIAL ===");
-        for (int i = top; i >= 0; i--) {
-            System.out.println(historial[i]);
+    public static String obtenerHistorial() {
+        return historial.obtenerTexto();
+    }
+
+    public static int calcularDanio(int ataque, int defensa) {
+        int base = ataque - defensa;
+        int variacion = random.nextInt(11) - 5;
+        int danio = base + variacion;
+
+        if (danio < 1) {
+            danio = 1;
         }
+
+        return danio;
     }
 
-    public static Jugador siguienteTurno() {
-        Jugador j = cola[frente];
-        frente = (frente + 1) % 2;
-        return j;
+    public static void ataqueNormal(Pokemon atacante, Pokemon defensor) {
+        atacante.aumentarAtaqueNormal();
+
+        int danio = calcularDanio(atacante.ataque, defensor.defensa);
+        defensor.recibirDanio(danio);
+
+        push(atacante.nombre + " usó ataque normal.");
+        push("Daño causado: " + danio);
+        push("Vida restante de " + defensor.nombre + ": " + defensor.vida);
+        push("Contador ataque normal de " + atacante.nombre + ": " + atacante.contadorAtaquesNormales + "/3");
     }
 
-    public static void iniciar(Jugador j1, Jugador j2) {
-        cola[0] = j1;
-        cola[1] = j2;
-        batalla(j1, j2, 1);
-    }
-
-    public static void batalla(Jugador j1, Jugador j2, int turno) {
-
-        if (!j1.pokemon.vivo() || !j2.pokemon.vivo()) {
+    public static void ataqueEspecial(Pokemon atacante, Pokemon defensor) {
+        if (!atacante.puedeUsarAtaqueEspecial()) {
+            push(atacante.nombre + " todavía no puede usar ataque especial.");
+            push("Necesita 3 ataques normales.");
             return;
         }
 
-        System.out.println("\n=== TURNO " + turno + " ===");
+        atacante.consumirAtaqueEspecial();
 
-        Jugador actual = siguienteTurno();
-        Jugador rival = (actual == j1) ? j2 : j1;
+        int danio = calcularDanio(atacante.ataqueEspecial, defensor.defensa);
+        defensor.recibirDanio(danio);
 
-        int danio = actual.pokemon.ataque - rival.pokemon.defensa;
-        if (danio < 1) danio = 1;
+        push(atacante.nombre + " usó ataque especial.");
+        push("Daño causado: " + danio);
+        push("Vida restante de " + defensor.nombre + ": " + defensor.vida);
+    }
 
-        rival.pokemon.recibirDanio(danio);
+    public static void defensaNormal(Pokemon pokemon) {
+        pokemon.aumentarDefensaNormal();
+        push(pokemon.nombre + " usó defensa normal.");
+        push("Contador defensa normal de " + pokemon.nombre + ": " + pokemon.contadorDefensasNormales + "/3");
+    }
 
-        String texto = actual.nombre + " ataca a " + rival.nombre +
-                " con " + actual.pokemon.nombre +
-                " causando " + danio + " de daño";
+    public static void defensaEspecial(Pokemon pokemon) {
+        if (!pokemon.puedeUsarDefensaEspecial()) {
+            push(pokemon.nombre + " todavía no puede usar defensa especial.");
+            push("Necesita 3 defensas normales.");
+            return;
+        }
 
-        System.out.println(texto);
-        push(texto);
+        pokemon.consumirDefensaEspecial();
+        push(pokemon.nombre + " usó defensa especial.");
+    }
 
-        System.out.println(j1.nombre + " vida: " + j1.pokemon.vida);
-        System.out.println(j2.nombre + " vida: " + j2.pokemon.vida);
+    public static boolean hayGanador(Jugador jugador, Jugador cpu) {
+        return !jugador.tienePokemonesVivos() || !cpu.tienePokemonesVivos();
+    }
 
-        batalla(j1, j2, turno + 1);
+    public static String obtenerGanador(Jugador jugador, Jugador cpu) {
+        if (jugador.tienePokemonesVivos()) {
+            return jugador.nombre;
+        }
+        return cpu.nombre;
     }
 }

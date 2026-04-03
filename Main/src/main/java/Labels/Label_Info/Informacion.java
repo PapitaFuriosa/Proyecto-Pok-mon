@@ -13,14 +13,20 @@ import Labels.Label_Selecc_Pokemon.Seleccion_Pokemon;
  * @author Usuario
  */
 public class Informacion extends javax.swing.JFrame {
-    
+    String nombreGuardado;
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Informacion.class.getName());
 
     /**
      * Creates new form Seleccion
      */
-    public Informacion() {
+    public Informacion(){
         initComponents();
+    }
+    public Informacion(String nombreRecibido) {
+        initComponents();
+        this.nombreGuardado = nombreRecibido;
+        
     }
 
     /**
@@ -39,7 +45,7 @@ public class Informacion extends javax.swing.JFrame {
         jTable2 = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
         btndevolver = new javax.swing.JButton();
-        btnselecc = new javax.swing.JButton();
+        empezar = new javax.swing.JButton();
         btnReglas = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -56,6 +62,8 @@ public class Informacion extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocationByPlatform(true);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 248, 220));
         jPanel1.setForeground(new java.awt.Color(255, 102, 153));
@@ -85,18 +93,46 @@ public class Informacion extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        jTable2.setEnabled(false);
         jScrollPane2.setViewportView(jTable2);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel6.setText("Información de los pokemones");
 
         btndevolver.setText("Salir");
+        btndevolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btndevolverMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btndevolverMouseExited(evt);
+            }
+        });
         btndevolver.addActionListener(this::btndevolverActionPerformed);
 
-        btnselecc.setText("Empezar");
-        btnselecc.addActionListener(this::btnseleccActionPerformed);
+        empezar.setText("Empezar");
+        empezar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                empezarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                empezarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                empezarMouseExited(evt);
+            }
+        });
+        empezar.addActionListener(this::empezarActionPerformed);
 
         btnReglas.setText("Reglas");
+        btnReglas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnReglasMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnReglasMouseExited(evt);
+            }
+        });
         btnReglas.addActionListener(this::btnReglasActionPerformed);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -111,7 +147,7 @@ public class Informacion extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(400, 400, 400)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnselecc, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(empezar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(btnReglas, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                                 .addComponent(btndevolver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -130,7 +166,7 @@ public class Informacion extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnselecc, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(empezar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnReglas, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
@@ -144,13 +180,13 @@ public class Informacion extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 1, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -158,26 +194,57 @@ public class Informacion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btndevolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndevolverActionPerformed
-        // TODO add your handling code here:
-         Inicio inicio = new Inicio(); 
-            inicio.setVisible(true);
-            this.dispose(); 
+
+        Inicio inicio = new Inicio();
+        inicio.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btndevolverActionPerformed
 
-    private void btnseleccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnseleccActionPerformed
-        // TODO add your handling code here:
-          Seleccion_Pokemon seleccion_pokemon = new Seleccion_Pokemon(); 
-            seleccion_pokemon.setVisible(true);
-            this.dispose(); 
-    }//GEN-LAST:event_btnseleccActionPerformed
+    private void empezarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empezarActionPerformed
+
+        Seleccion_Pokemon seleccion_pokemon = new Seleccion_Pokemon(this.nombreGuardado);
+        seleccion_pokemon.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_empezarActionPerformed
 
     private void btnReglasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReglasActionPerformed
-        // TODO add your handling code here:
-         Reglas reglas = new Reglas(); 
-            reglas.setVisible(true);
-            this.dispose(); 
-        
+
+        Reglas reglas = new Reglas();
+        reglas.setVisible(true);
+        this.dispose();
+
     }//GEN-LAST:event_btnReglasActionPerformed
+
+    private void empezarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_empezarMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_empezarMouseClicked
+
+    private void empezarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_empezarMouseEntered
+                                         
+    empezar.setBackground(new java.awt.Color(210, 195, 150));
+
+        
+    }//GEN-LAST:event_empezarMouseEntered
+
+    private void empezarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_empezarMouseExited
+    empezar.setBackground(new java.awt.Color(220, 220, 220));
+    }//GEN-LAST:event_empezarMouseExited
+
+    private void btnReglasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReglasMouseEntered
+        btnReglas.setBackground(new java.awt.Color(210, 195, 150));
+    }//GEN-LAST:event_btnReglasMouseEntered
+
+    private void btnReglasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReglasMouseExited
+     btnReglas.setBackground(new java.awt.Color(220, 220, 220));
+    }//GEN-LAST:event_btnReglasMouseExited
+
+    private void btndevolverMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btndevolverMouseEntered
+       btndevolver.setBackground(new java.awt.Color(210, 195, 150));
+    }//GEN-LAST:event_btndevolverMouseEntered
+
+    private void btndevolverMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btndevolverMouseExited
+       btndevolver.setBackground(new java.awt.Color(220, 220, 220));
+    }//GEN-LAST:event_btndevolverMouseExited
 
     /**
      * @param args the command line arguments
@@ -207,7 +274,7 @@ public class Informacion extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnReglas;
     private javax.swing.JButton btndevolver;
-    private javax.swing.JButton btnselecc;
+    private javax.swing.JButton empezar;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

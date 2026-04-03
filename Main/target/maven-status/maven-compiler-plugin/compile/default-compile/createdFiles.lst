@@ -1,11 +1,5 @@
-com\mycompany\main\Main$1.class
-com\mycompany\main\Pokemon.class
-Labels\Label_Info\Informacion$1.class
-com\mycompany\main\Main.class
-com\mycompany\main\NewJFrame.class
-Labels\Label_Inicio\Inicio.class
-com\mycompany\main\Batalla.class
-com\mycompany\main\Jugador.class
-Labels\Label_Selecc_Pokemon\Reglas.class
-Labels\Label_Info\Informacion.class
-Labels\Label_Selecc_Pokemon\Seleccion_Pokemon.class
+com\mycompany\main\NodoPila.class
+com\mycompany\main\ColaPokemon.class
+com\mycompany\main\NodoColaPokemon.class
+Labels\Label_pelea\Pelea.class
+com\mycompany\main\PilaHistorial.class

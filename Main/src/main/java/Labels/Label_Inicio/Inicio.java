@@ -14,11 +14,10 @@ public class Inicio extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Inicio.class.getName());
 
-    /**
-     * Creates new form Inicio
-     */
+
     public Inicio() {
         initComponents();
+        
     }
 
     /**
@@ -39,6 +38,8 @@ public class Inicio extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocationByPlatform(true);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 248, 220));
 
@@ -50,10 +51,26 @@ public class Inicio extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(74, 144, 226));
         jButton1.setText("Iniciar");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton1MouseExited(evt);
+            }
+        });
         jButton1.addActionListener(this::jButton1ActionPerformed);
 
         btnExit.setBackground(new java.awt.Color(74, 144, 226));
         btnExit.setText("Salir");
+        btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnExitMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnExitMouseExited(evt);
+            }
+        });
         btnExit.addActionListener(this::btnExitActionPerformed);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
@@ -129,7 +146,7 @@ public class Inicio extends javax.swing.JFrame {
     if (nombre.isEmpty()) {
         javax.swing.JOptionPane.showMessageDialog(this, "Por favor, ingresa tu nombre para continuar.");
     } else {
-        Informacion ventanaSeleccion = new Informacion(); 
+        Informacion ventanaSeleccion = new Informacion(nombre); 
         ventanaSeleccion.setVisible(true);            
         
         this.dispose();
@@ -140,6 +157,22 @@ public class Inicio extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
+
+    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
+       jButton1.setBackground(new java.awt.Color(210, 195, 150));
+    }//GEN-LAST:event_jButton1MouseEntered
+
+    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
+       jButton1.setBackground(new java.awt.Color(220, 220, 220));
+    }//GEN-LAST:event_jButton1MouseExited
+
+    private void btnExitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseEntered
+        btnExit.setBackground(new java.awt.Color(210, 195, 150));
+    }//GEN-LAST:event_btnExitMouseEntered
+
+    private void btnExitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseExited
+       btnExit.setBackground(new java.awt.Color(220, 220, 220));
+    }//GEN-LAST:event_btnExitMouseExited
 
     /**
      * @param args the command line arguments

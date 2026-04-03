@@ -14,11 +14,10 @@ public class Reglas extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Reglas.class.getName());
 
-    /**
-     * Creates new form Reglas
-     */
+  
     public Reglas() {
         initComponents();
+        
     }
 
     /**
@@ -41,6 +40,8 @@ public class Reglas extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocationByPlatform(true);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 248, 220));
 
@@ -129,11 +130,8 @@ public class Reglas extends javax.swing.JFrame {
             this.dispose(); 
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
+     
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -150,7 +148,6 @@ public class Reglas extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new Reglas().setVisible(true));
     }
 
