@@ -11,8 +11,6 @@ import Labels.Label_Info.Informacion;
  * @author Usuario
  */
 public class Reglas extends javax.swing.JFrame {
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Reglas.class.getName());
 
   
     public Reglas() {
@@ -58,11 +56,15 @@ public class Reglas extends javax.swing.JFrame {
 
         jLabel6.setText("5) Gana quien derrote a los 4 pokemones contrarios");
 
-        jLabel7.setText("6) Diviértete");
+        jLabel7.setText("6) DiviÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©rtete");
 
         jButton1.setBackground(new java.awt.Color(74, 144, 226));
         jButton1.setText("Volver al inicio");
-        jButton1.addActionListener(this::jButton1ActionPerformed);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -137,14 +139,7 @@ public class Reglas extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (Exception ex) {
         }
         //</editor-fold>
 

@@ -2,38 +2,28 @@ package com.mycompany.main;
 
 public class Pokemon {
     public String nombre;
+    public String tipo;
     public int vida;
-<<<<<<< HEAD
     public int vidaMaxima;
-=======
->>>>>>> 2d20a783bb75ab3f3d3b16d12efc433ac235daed
     public int ataque;
     public int defensa;
     public int ataqueEspecial;
     public int defensaEspecial;
 
-<<<<<<< HEAD
     public int contadorAtaquesNormales;
     public int contadorDefensasNormales;
 
-    public Pokemon(String nombre, int vida, int ataque, int defensa, int ataqueEspecial, int defensaEspecial) {
+    public Pokemon(String nombre, String tipo, int vida, int ataque, int defensa, int ataqueEspecial, int defensaEspecial) {
         this.nombre = nombre;
+        this.tipo = tipo;
         this.vida = vida;
         this.vidaMaxima = vida;
-=======
-    public Pokemon(String nombre, int vida, int ataque, int defensa, int ataqueEspecial, int defensaEspecial) {
-        this.nombre = nombre;
-        this.vida = vida;
->>>>>>> 2d20a783bb75ab3f3d3b16d12efc433ac235daed
         this.ataque = ataque;
         this.defensa = defensa;
         this.ataqueEspecial = ataqueEspecial;
         this.defensaEspecial = defensaEspecial;
-<<<<<<< HEAD
         this.contadorAtaquesNormales = 0;
         this.contadorDefensasNormales = 0;
-=======
->>>>>>> 2d20a783bb75ab3f3d3b16d12efc433ac235daed
     }
 
     public void recibirDanio(int danio) {
@@ -56,11 +46,11 @@ public class Pokemon {
     }
 
     public boolean puedeUsarAtaqueEspecial() {
-        return contadorAtaquesNormales >= 3;
+        return contadorAtaquesNormales >= 2;
     }
 
     public boolean puedeUsarDefensaEspecial() {
-        return contadorDefensasNormales >= 3;
+        return contadorDefensasNormales >= 2;
     }
 
     public void consumirAtaqueEspecial() {
@@ -69,5 +59,44 @@ public class Pokemon {
 
     public void consumirDefensaEspecial() {
         contadorDefensasNormales = 0;
+    }
+
+    public boolean esFuerteContra(String tipoRival) {
+        return FabricaPokemon.obtenerFuerteContra(tipo).equals(tipoRival);
+    }
+
+    public boolean esDebilContra(String tipoRival) {
+        return FabricaPokemon.obtenerDebilContra(tipo).equals(tipoRival);
+    }
+
+    public int getAtaqueContra(String tipoRival, boolean especial) {
+        int valor = especial ? ataqueEspecial : ataque;
+
+        if (especial && esFuerteContra(tipoRival)) {
+            if ("Agua".equals(tipo)) {
+                return ataqueEspecial + 10;
+            }
+            return ataqueEspecial + 5;
+        }
+
+        if (!especial) {
+            if (esFuerteContra(tipoRival)) {
+                valor += 10;
+            } else if (esDebilContra(tipoRival)) {
+                valor -= 10;
+            }
+        }
+
+        return Math.max(1, valor);
+    }
+
+    public int getDefensaEspecialContra(String tipoAtacante) {
+        if (esFuerteContra(tipoAtacante)) {
+            if ("Fuego".equals(tipo) || "Agua".equals(tipo)) {
+                return defensaEspecial + 10;
+            }
+            return defensaEspecial + 5;
+        }
+        return defensaEspecial;
     }
 }

@@ -4,20 +4,24 @@
  */
 package Labels.Label_pelea;
 
+import Labels.Label_Selecc_Pokemon.Seleccion_Pokemon;
+
+import com.mycompany.main.Batalla;
 import com.mycompany.main.Jugador;
 import com.mycompany.main.Pokemon;
-import javax.swing.JOptionPane;
+import java.awt.Color;
+import java.awt.Image;
+import java.io.File;
+import java.net.URL;
+import javax.swing.ImageIcon;
 
 public class Pelea extends javax.swing.JFrame {
-
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Pelea.class.getName());
 
     private Jugador jugador;
     private Jugador cpu;
 
     private boolean jugadorDefendio = false;
     private boolean jugadorDefensaEspecialActiva = false;
-
     private boolean cpuDefendio = false;
     private boolean cpuDefensaEspecialActiva = false;
 
@@ -25,7 +29,30 @@ public class Pelea extends javax.swing.JFrame {
         initComponents();
         this.jugador = jugador;
         this.cpu = cpu;
+        configurarVista();
         actualizarPantalla();
+        escribirResumen("La batalla empieza entre " + jugador.nombre + " y " + cpu.nombre + ".");
+    }
+
+    private void configurarVista() {
+        setTitle("Batalla Pokemon 1 vs 1");
+        setLocationRelativeTo(null);
+
+        txtPreview.setEditable(false);
+        txtPreview.setLineWrap(true);
+        txtPreview.setWrapStyleWord(true);
+
+        lblimagenpokemonjugador.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblimagenpokemonjugador.setVerticalAlignment(javax.swing.SwingConstants.CENTER);
+        lblimagenpokemonjugador.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblimagenpokemonjugador.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        lblimagenpokemonjugador.setForeground(Color.WHITE);
+
+        lblimagencpu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblimagencpu.setVerticalAlignment(javax.swing.SwingConstants.CENTER);
+        lblimagencpu.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblimagencpu.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        lblimagencpu.setForeground(Color.WHITE);
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -47,14 +74,18 @@ public class Pelea extends javax.swing.JFrame {
         BtnDefensaEspecial = new javax.swing.JButton();
         BtnHuir = new javax.swing.JButton();
         barraVidaJugador = new javax.swing.JProgressBar();
-        barraVidaCpu = new javax.swing.JProgressBar();
         lblPokemonJugador = new javax.swing.JLabel();
         lblPokemonCpu = new javax.swing.JLabel();
         lblNombreJugador = new javax.swing.JLabel();
         lblNombreCpu = new javax.swing.JLabel();
         lblContAtaque = new javax.swing.JLabel();
         lblContDefensa = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblimagenpokemonjugador = new javax.swing.JLabel();
+        lblimagencpu = new javax.swing.JLabel();
+        PanelTextoBatalla = new javax.swing.JPanel();
+        txtPreview = new javax.swing.JTextArea();
+        barraVidaCpu = new javax.swing.JProgressBar();
+        lblfondo = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
 
@@ -204,11 +235,7 @@ public class Pelea extends javax.swing.JFrame {
 
         barraVidaJugador.setBackground(new java.awt.Color(102, 255, 102));
         barraVidaJugador.setStringPainted(true);
-        jLayeredPane1.add(barraVidaJugador, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, -1, 20));
-
-        barraVidaCpu.setBackground(new java.awt.Color(102, 255, 102));
-        barraVidaCpu.setStringPainted(true);
-        jLayeredPane1.add(barraVidaCpu, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 160, -1, 20));
+        jLayeredPane1.add(barraVidaJugador, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, -1, 20));
 
         lblPokemonJugador.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         lblPokemonJugador.setForeground(new java.awt.Color(255, 255, 255));
@@ -231,15 +258,45 @@ public class Pelea extends javax.swing.JFrame {
         lblContAtaque.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         lblContAtaque.setForeground(new java.awt.Color(255, 255, 255));
         lblContAtaque.setText("0/3");
-        jLayeredPane1.add(lblContAtaque, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 440, -1, -1));
+        jLayeredPane1.add(lblContAtaque, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 440, -1, -1));
 
         lblContDefensa.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         lblContDefensa.setForeground(new java.awt.Color(255, 255, 255));
         lblContDefensa.setText("0/3");
-        jLayeredPane1.add(lblContDefensa, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 440, -1, -1));
+        jLayeredPane1.add(lblContDefensa, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 480, -1, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pokémon-arena-v0-pe2kotypoztd1.png"))); // NOI18N
-        jLayeredPane1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 1020, 540));
+        lblimagenpokemonjugador.setText("jLabel1");
+        jLayeredPane1.add(lblimagenpokemonjugador, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, -1, -1));
+
+        lblimagencpu.setText("jLabel2");
+        jLayeredPane1.add(lblimagencpu, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 240, -1, -1));
+
+        txtPreview.setColumns(20);
+        txtPreview.setRows(5);
+        txtPreview.setText("Aqui se muestra el resumen del turno en la vista previa.");
+
+        javax.swing.GroupLayout PanelTextoBatallaLayout = new javax.swing.GroupLayout(PanelTextoBatalla);
+        PanelTextoBatalla.setLayout(PanelTextoBatallaLayout);
+        PanelTextoBatallaLayout.setHorizontalGroup(
+            PanelTextoBatallaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelTextoBatallaLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(txtPreview, javax.swing.GroupLayout.PREFERRED_SIZE, 917, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
+        );
+        PanelTextoBatallaLayout.setVerticalGroup(
+            PanelTextoBatallaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(txtPreview, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+        );
+
+        jLayeredPane1.add(PanelTextoBatalla, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 590, 960, -1));
+
+        barraVidaCpu.setBackground(new java.awt.Color(102, 255, 102));
+        barraVidaCpu.setStringPainted(true);
+        jLayeredPane1.add(barraVidaCpu, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 170, -1, 20));
+
+        lblfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pokémon-arena-v0-pe2kotypoztd1.png"))); // NOI18N
+        jLayeredPane1.add(lblfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 1020, 540));
 
         getContentPane().add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, -104, 960, 930));
 
@@ -247,15 +304,13 @@ public class Pelea extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnDefensaEspecialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDefensaEspecialActionPerformed
-        // TODO add your handling code here:
         Pokemon pj = jugador.getPokemonActual();
-
         if (pj == null) {
             return;
         }
 
         if (!pj.puedeUsarDefensaEspecial()) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Todavía no puedes usar defensa especial. Necesitas 3 defensas normales.");
+            escribirResumen("Todavia no puedes usar defensa especial. Necesitas 2 defensas normales.");
             return;
         }
 
@@ -263,25 +318,22 @@ public class Pelea extends javax.swing.JFrame {
         jugadorDefensaEspecialActiva = true;
         jugadorDefendio = false;
 
-        javax.swing.JOptionPane.showMessageDialog(this, pj.nombre + " activó defensa especial.");
-
+        escribirResumen(pj.nombre + " activo defensa especial.");
         actualizarPantalla();
 
         if (jugador.tienePokemonesVivos() && cpu.tienePokemonesVivos()) {
             turnoCpu();
         }
-
     }//GEN-LAST:event_BtnDefensaEspecialActionPerformed
 
     private void BtnHuirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHuirActionPerformed
-        // TODO add your handling code here:
-        javax.swing.JOptionPane.showMessageDialog(this, jugador.nombre + " ha huido del combate.");
+        escribirResumen(jugador.nombre + " huyo del combate.");
+        Seleccion_Pokemon seleccion = new Seleccion_Pokemon(jugador.nombre);
+        seleccion.setVisible(true);
         this.dispose();
-
     }//GEN-LAST:event_BtnHuirActionPerformed
 
     private void BtnAtacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAtacarActionPerformed
-        // TODO add your handling code here:
         Pokemon pj = jugador.getPokemonActual();
         Pokemon pc = cpu.getPokemonActual();
 
@@ -289,37 +341,34 @@ public class Pelea extends javax.swing.JFrame {
             return;
         }
 
-        int defensaCpu = obtenerDefensaCpu();
-
+        int defensaCpuActual = obtenerDefensaCpu();
         pj.aumentarAtaqueNormal();
 
-        int danio = pj.ataque - (defensaCpu / 2);
+        int danio = pj.ataque - (defensaCpuActual / 2);
         if (danio < 8) {
             danio = 8;
         }
 
         pc.recibirDanio(danio);
-
-        javax.swing.JOptionPane.showMessageDialog(this, pj.nombre + " usó ataque normal e hizo " + danio + " de daño.");
+        String mensaje = pj.nombre + " uso ataque normal e hizo " + danio + " de daño.";
 
         if (!pc.vivo()) {
-            javax.swing.JOptionPane.showMessageDialog(this, pc.nombre + " fue derrotado.");
+            mensaje += "\n" + pc.nombre + " fue derrotado.";
             cpu.pasarSiguientePokemon();
             cpuDefendio = false;
             cpuDefensaEspecialActiva = false;
         }
 
+        escribirResumen(mensaje);
         actualizarPantalla();
         revisarGanador();
 
         if (jugador.tienePokemonesVivos() && cpu.tienePokemonesVivos()) {
             turnoCpu();
         }
-
     }//GEN-LAST:event_BtnAtacarActionPerformed
 
     private void BtnAtaqueEspecialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAtaqueEspecialActionPerformed
-        // TODO add your handling code here:
         Pokemon pj = jugador.getPokemonActual();
         Pokemon pc = cpu.getPokemonActual();
 
@@ -328,41 +377,38 @@ public class Pelea extends javax.swing.JFrame {
         }
 
         if (!pj.puedeUsarAtaqueEspecial()) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Todavía no puedes usar ataque especial. Necesitas 3 ataques normales.");
+            escribirResumen("Todavia no puedes usar ataque especial. Necesitas 2 ataques normales.");
             return;
         }
 
-        int defensaCpu = obtenerDefensaCpu();
-
+        int defensaCpuActual = obtenerDefensaCpu();
         pj.consumirAtaqueEspecial();
 
-        int danio = pj.ataqueEspecial - (defensaCpu / 2);
+        int danio = pj.ataqueEspecial - (defensaCpuActual / 2);
         if (danio < 12) {
             danio = 12;
         }
 
         pc.recibirDanio(danio);
-
-        javax.swing.JOptionPane.showMessageDialog(this, pj.nombre + " usó ataque especial e hizo " + danio + " de daño.");
+        String mensaje = pj.nombre + " uso ataque especial e hizo " + danio + " de daño.";
 
         if (!pc.vivo()) {
-            javax.swing.JOptionPane.showMessageDialog(this, pc.nombre + " fue derrotado.");
+            mensaje += "\n" + pc.nombre + " fue derrotado.";
             cpu.pasarSiguientePokemon();
             cpuDefendio = false;
             cpuDefensaEspecialActiva = false;
         }
 
+        escribirResumen(mensaje);
         actualizarPantalla();
         revisarGanador();
 
         if (jugador.tienePokemonesVivos() && cpu.tienePokemonesVivos()) {
             turnoCpu();
         }
-
     }//GEN-LAST:event_BtnAtaqueEspecialActionPerformed
 
     private void BtnDefenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDefenderActionPerformed
-        // TODO add your handling code here:
         Pokemon pj = jugador.getPokemonActual();
 
         if (pj == null) {
@@ -373,39 +419,18 @@ public class Pelea extends javax.swing.JFrame {
         jugadorDefendio = true;
         jugadorDefensaEspecialActiva = false;
 
-        javax.swing.JOptionPane.showMessageDialog(this, pj.nombre + " usó defensa normal.");
-
+        escribirResumen(pj.nombre + " uso defensa normal.");
         actualizarPantalla();
 
         if (jugador.tienePokemonesVivos() && cpu.tienePokemonesVivos()) {
             turnoCpu();
         }
-
-
     }//GEN-LAST:event_BtnDefenderActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (Exception ex) {
         }
-        //</editor-fold>
-
-        /* Create and display the form */
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -414,12 +439,12 @@ public class Pelea extends javax.swing.JFrame {
     private javax.swing.JButton BtnDefender;
     private javax.swing.JButton BtnDefensaEspecial;
     private javax.swing.JButton BtnHuir;
+    private javax.swing.JPanel PanelTextoBatalla;
     private javax.swing.JProgressBar barraVidaCpu;
     private javax.swing.JProgressBar barraVidaJugador;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JLayeredPane jLayeredPane3;
@@ -433,6 +458,10 @@ public class Pelea extends javax.swing.JFrame {
     private javax.swing.JLabel lblNombreJugador;
     private javax.swing.JLabel lblPokemonCpu;
     private javax.swing.JLabel lblPokemonJugador;
+    private javax.swing.JLabel lblfondo;
+    private javax.swing.JLabel lblimagencpu;
+    private javax.swing.JLabel lblimagenpokemonjugador;
+    private javax.swing.JTextArea txtPreview;
     // End of variables declaration//GEN-END:variables
 
     private int obtenerDefensaCpu() {
@@ -462,79 +491,77 @@ public class Pelea extends javax.swing.JFrame {
         Pokemon pj = jugador.getPokemonActual();
         Pokemon pc = cpu.getPokemonActual();
 
+        actualizarPanelJugador(pj);
+        actualizarPanelCpu(pc);
+    }
+
+    private void actualizarPanelJugador(Pokemon pj) {
         if (pj != null) {
             lblPokemonJugador.setText(pj.nombre);
-
             barraVidaJugador.setMaximum(pj.vidaMaxima);
             barraVidaJugador.setValue(pj.vida);
             barraVidaJugador.setString(pj.vida + " / " + pj.vidaMaxima);
+            actualizarColorBarra(barraVidaJugador, pj.vida, pj.vidaMaxima);
 
-            double porcentaje = (double) pj.vida / pj.vidaMaxima;
-
-            if (porcentaje > 0.5) {
-                barraVidaJugador.setForeground(java.awt.Color.GREEN);
-            } else if (porcentaje > 0.25) {
-                barraVidaJugador.setForeground(java.awt.Color.YELLOW);
-            } else {
-                barraVidaJugador.setForeground(java.awt.Color.RED);
-            }
-
-            lblContAtaque.setText("Ataques: " + pj.contadorAtaquesNormales + "/3");
-            lblContDefensa.setText("Defensas: " + pj.contadorDefensasNormales + "/3");
+            lblContAtaque.setText("Ataques: " + pj.contadorAtaquesNormales + "/2");
+            lblContDefensa.setText("Defensas: " + pj.contadorDefensasNormales + "/2");
+            lblimagenpokemonjugador.setIcon(cargarIconoPokemon(pj.nombre, true));
+            lblimagenpokemonjugador.setText("");
         } else {
-            lblPokemonJugador.setText("Sin Pokémon");
+            lblPokemonJugador.setText("Sin Pokemon");
             barraVidaJugador.setMaximum(100);
             barraVidaJugador.setValue(0);
             barraVidaJugador.setString("0 / 0");
-            barraVidaJugador.setForeground(java.awt.Color.RED);
-
-            lblContAtaque.setText("Ataques: 0/3");
-            lblContDefensa.setText("Defensas: 0/3");
+            barraVidaJugador.setForeground(Color.RED);
+            lblContAtaque.setText("Ataques: 0/2");
+            lblContDefensa.setText("Defensas: 0/2");
+            lblimagenpokemonjugador.setIcon(null);
+            lblimagenpokemonjugador.setText("Sin Pokemon");
         }
+    }
 
+    private void actualizarPanelCpu(Pokemon pc) {
         if (pc != null) {
             lblPokemonCpu.setText(pc.nombre);
-
             barraVidaCpu.setMaximum(pc.vidaMaxima);
             barraVidaCpu.setValue(pc.vida);
             barraVidaCpu.setString(pc.vida + " / " + pc.vidaMaxima);
-
-            double porcentaje = (double) pc.vida / pc.vidaMaxima;
-
-            if (porcentaje > 0.5) {
-                barraVidaCpu.setForeground(java.awt.Color.GREEN);
-            } else if (porcentaje > 0.25) {
-                barraVidaCpu.setForeground(java.awt.Color.YELLOW);
-            } else {
-                barraVidaCpu.setForeground(java.awt.Color.RED);
-            }
+            actualizarColorBarra(barraVidaCpu, pc.vida, pc.vidaMaxima);
+            lblimagencpu.setIcon(cargarIconoPokemon(pc.nombre, false));
+            lblimagencpu.setText("");
         } else {
-            lblPokemonCpu.setText("Sin Pokémon");
+            lblPokemonCpu.setText("Sin Pokemon");
             barraVidaCpu.setMaximum(100);
             barraVidaCpu.setValue(0);
             barraVidaCpu.setString("0 / 0");
-            barraVidaCpu.setForeground(java.awt.Color.RED);
+            barraVidaCpu.setForeground(Color.RED);
+            lblimagencpu.setIcon(null);
+            lblimagencpu.setText("Sin Pokemon");
+        }
+    }
+
+    private void actualizarColorBarra(javax.swing.JProgressBar barra, int vidaActual, int vidaMaxima) {
+        double porcentaje = vidaMaxima == 0 ? 0 : (double) vidaActual / vidaMaxima;
+
+        if (porcentaje > 0.5) {
+            barra.setForeground(new Color(0, 230, 64));
+        } else if (porcentaje > 0.25) {
+            barra.setForeground(Color.YELLOW);
+        } else {
+            barra.setForeground(Color.RED);
         }
     }
 
     private void revisarGanador() {
         if (!jugador.tienePokemonesVivos()) {
-            JOptionPane.showMessageDialog(this, "Ganó " + cpu.nombre);
-            BtnAtacar.setEnabled(false);
-            BtnDefender.setEnabled(false);
-            BtnAtaqueEspecial.setEnabled(false);
-            BtnDefensaEspecial.setEnabled(false);
-            BtnHuir.setEnabled(false);
+            escribirResumen("Gano " + cpu.nombre + ".");
+            deshabilitarBotones();
             return;
         }
 
         if (!cpu.tienePokemonesVivos()) {
-            JOptionPane.showMessageDialog(this, "Ganó " + jugador.nombre);
-            BtnAtacar.setEnabled(false);
-            BtnDefender.setEnabled(false);
-            BtnAtaqueEspecial.setEnabled(false);
-            BtnDefensaEspecial.setEnabled(false);
-            BtnHuir.setEnabled(false);
+            escribirResumen("Gano " + jugador.nombre + ".");
+            deshabilitarBotones();
         }
     }
 
@@ -546,84 +573,141 @@ public class Pelea extends javax.swing.JFrame {
             return;
         }
 
-        java.util.Random random = new java.util.Random();
-        int accion = random.nextInt(4);
-
-        int defensaJugador = pj.defensa;
+        int defensaJugadorActual = pj.defensa;
 
         if (jugadorDefensaEspecialActiva) {
-            defensaJugador = pj.defensaEspecial + 15;
+            defensaJugadorActual = pj.getDefensaEspecialContra(pc.tipo);
             jugadorDefensaEspecialActiva = false;
         } else if (jugadorDefendio) {
-            defensaJugador = pj.defensa + 10;
+            defensaJugadorActual = pj.defensa + 10;
             jugadorDefendio = false;
         }
 
-        if (accion == 0) {
+        int ataqueBase = pc.getAtaqueContra(pj.tipo, false);
+        int ataqueEspecialBase = pc.getAtaqueContra(pj.tipo, true);
+        int danioNormal = Batalla.calcularDanio(ataqueBase, defensaJugadorActual);
+        int danioEspecial = Batalla.calcularDanio(ataqueEspecialBase, defensaJugadorActual);
+        String mensajeCpu;
+
+        if (pc.puedeUsarAtaqueEspecial() && danioEspecial >= pj.vida) {
+            pc.consumirAtaqueEspecial();
+            pj.recibirDanio(danioEspecial);
+            mensajeCpu = pc.nombre + " uso ataque especial e hizo " + danioEspecial + " de daño.";
+        } else if (danioNormal >= pj.vida) {
             pc.aumentarAtaqueNormal();
-
-            int danio = pc.ataque - defensaJugador;
-            if (danio < 1) {
-                danio = 1;
-            }
-
-            pj.recibirDanio(danio);
-
-            JOptionPane.showMessageDialog(this, pc.nombre + " atacó e hizo " + danio + " de daño.");
-        } else if (accion == 1) {
-            if (pc.puedeUsarAtaqueEspecial()) {
-                pc.consumirAtaqueEspecial();
-
-                int danio = pc.ataqueEspecial - defensaJugador;
-                if (danio < 1) {
-                    danio = 1;
-                }
-
-                pj.recibirDanio(danio);
-
-                JOptionPane.showMessageDialog(this, pc.nombre + " usó ataque especial e hizo " + danio + " de daño.");
-            } else {
-                pc.aumentarAtaqueNormal();
-
-                int danio = pc.ataque - defensaJugador;
-                if (danio < 1) {
-                    danio = 1;
-                }
-
-                pj.recibirDanio(danio);
-
-                JOptionPane.showMessageDialog(this, pc.nombre + " no tenía especial. Atacó e hizo " + danio + " de daño.");
-            }
-        } else if (accion == 2) {
+            pj.recibirDanio(danioNormal);
+            mensajeCpu = pc.nombre + " ataco e hizo " + danioNormal + " de daño.";
+        } else if (pj.esFuerteContra(pc.tipo) && pc.puedeUsarDefensaEspecial()) {
+            pc.consumirDefensaEspecial();
+            cpuDefensaEspecialActiva = true;
+            cpuDefendio = false;
+            mensajeCpu = pc.nombre + " activo defensa especial.";
+        } else if (pc.vida <= (pc.vidaMaxima / 3)) {
             pc.aumentarDefensaNormal();
             cpuDefendio = true;
             cpuDefensaEspecialActiva = false;
-
-            JOptionPane.showMessageDialog(this, pc.nombre + " usó defensa normal.");
+            mensajeCpu = pc.nombre + " uso defensa normal.";
+        } else if (pc.esFuerteContra(pj.tipo) && pc.puedeUsarAtaqueEspecial()) {
+            pc.consumirAtaqueEspecial();
+            pj.recibirDanio(danioEspecial);
+            mensajeCpu = pc.nombre + " uso ataque especial e hizo " + danioEspecial + " de daño.";
         } else {
-            if (pc.puedeUsarDefensaEspecial()) {
-                pc.consumirDefensaEspecial();
-                cpuDefensaEspecialActiva = true;
-                cpuDefendio = false;
-
-                JOptionPane.showMessageDialog(this, pc.nombre + " activó defensa especial.");
-            } else {
-                pc.aumentarDefensaNormal();
-                cpuDefendio = true;
-                cpuDefensaEspecialActiva = false;
-
-                JOptionPane.showMessageDialog(this, pc.nombre + " no tenía defensa especial. Usó defensa normal.");
-            }
+            pc.aumentarAtaqueNormal();
+            pj.recibirDanio(danioNormal);
+            mensajeCpu = pc.nombre + " ataco e hizo " + danioNormal + " de daño.";
         }
 
         if (!pj.vivo()) {
-            JOptionPane.showMessageDialog(this, pj.nombre + " fue derrotado.");
+            mensajeCpu += "\n" + pj.nombre + " fue derrotado.";
             jugador.pasarSiguientePokemon();
             jugadorDefendio = false;
             jugadorDefensaEspecialActiva = false;
         }
 
+        escribirResumen(txtPreview.getText() + "\n" + mensajeCpu);
         actualizarPantalla();
         revisarGanador();
+    }
+
+    private void escribirResumen(String texto) {
+        Batalla.reiniciar();
+        for (String linea : texto.split("\\n")) {
+            Batalla.push(linea);
+        }
+        txtPreview.setText(Batalla.obtenerHistorial());
+        txtPreview.setCaretPosition(0);
+    }
+
+    private void deshabilitarBotones() {
+        BtnAtacar.setEnabled(false);
+        BtnDefender.setEnabled(false);
+        BtnAtaqueEspecial.setEnabled(false);
+        BtnDefensaEspecial.setEnabled(false);
+        BtnHuir.setEnabled(false);
+    }
+
+    private javax.swing.ImageIcon cargarIconoPokemon(String nombrePokemon, boolean jugadorLocal) {
+        String ruta = obtenerRutaIcono(nombrePokemon);
+        URL url = ruta != null ? buscarRecurso(ruta) : null;
+
+        if (url == null) {
+            String respaldo = jugadorLocal ? "/icons/avatar (3).png" : "/icons/avatar (2).png";
+            url = buscarRecurso(respaldo);
+        }
+
+        if (url == null) {
+            return null;
+        }
+
+        Image imagen = new ImageIcon(url).getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
+        return new ImageIcon(imagen);
+    }
+    private String obtenerRutaIcono(String nombrePokemon) {
+        if ("Charmander".equals(nombrePokemon)) {
+            return "/icons/charmander.png";
+        } else if ("Squirtle".equals(nombrePokemon)) {
+            return "/icons/squirtle.png";
+        } else if ("Pidgey".equals(nombrePokemon)) {
+            return "/icons/pidgey.png";
+        } else if ("Pikachu".equals(nombrePokemon)) {
+            return "/icons/pikachu.png";
+        } else if ("Ponyta".equals(nombrePokemon)) {
+            return "/icons/ponyta.png";
+        } else if ("Psyduck".equals(nombrePokemon)) {
+            return "/icons/psyduck.png";
+        } else if ("Spearow".equals(nombrePokemon)) {
+            return "/icons/spearow.png";
+        } else if ("Jolteon".equals(nombrePokemon)) {
+            return "/icons/Jolteon.png";
+        }
+        return null;
+    }
+
+    private URL buscarRecurso(String ruta) {
+        URL url = getClass().getResource(ruta);
+        if (url != null) {
+            return url;
+        }
+
+        String relativa = ruta.startsWith("/") ? ruta.substring(1) : ruta;
+        File archivoResources = new File("src/main/resources", relativa);
+        if (archivoResources.exists()) {
+            try {
+                return archivoResources.toURI().toURL();
+            } catch (java.net.MalformedURLException ex) {
+                return null;
+            }
+        }
+
+        File archivoJava = new File("src/main/java", relativa);
+        if (archivoJava.exists()) {
+            try {
+                return archivoJava.toURI().toURL();
+            } catch (java.net.MalformedURLException ex) {
+                return null;
+            }
+        }
+
+        return null;
     }
 }

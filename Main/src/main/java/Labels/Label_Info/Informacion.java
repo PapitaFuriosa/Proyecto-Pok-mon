@@ -15,8 +15,6 @@ import Labels.Label_Selecc_Pokemon.Seleccion_Pokemon;
 public class Informacion extends javax.swing.JFrame {
     String nombreGuardado;
 
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Informacion.class.getName());
-
     /**
      * Creates new form Seleccion
      */
@@ -43,7 +41,7 @@ public class Informacion extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        jLabel6 = new javax.swing.JLabel();
+        info = new javax.swing.JLabel();
         btndevolver = new javax.swing.JButton();
         empezar = new javax.swing.JButton();
         btnReglas = new javax.swing.JButton();
@@ -96,8 +94,8 @@ public class Informacion extends javax.swing.JFrame {
         jTable2.setEnabled(false);
         jScrollPane2.setViewportView(jTable2);
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        jLabel6.setText("Información de los pokemones");
+        info.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        info.setText("Información de los pokemones");
 
         btndevolver.setText("Salir");
         btndevolver.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -155,14 +153,14 @@ public class Informacion extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 323, Short.MAX_VALUE)
-                .addComponent(jLabel6)
+                .addComponent(info)
                 .addGap(306, 306, 306))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addComponent(jLabel6)
+                .addComponent(info)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -249,21 +247,12 @@ public class Informacion extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+    public static void main(String args[]) {        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (Exception ex) {
         }
         //</editor-fold>
 
@@ -275,7 +264,7 @@ public class Informacion extends javax.swing.JFrame {
     private javax.swing.JButton btnReglas;
     private javax.swing.JButton btndevolver;
     private javax.swing.JButton empezar;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel info;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
